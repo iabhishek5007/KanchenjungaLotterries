@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import im.delight.android.webview.AdvancedWebView;
 
-public class HomeActivity extends AppCompatActivity implements AdvancedWebView.Listener{
+public class HomeActivity extends AppCompatActivity implements AdvancedWebView.Listener {
 
     private static final String TEST_PAGE_URL = "http://kanchenjungalotterries.com/";
     private AdvancedWebView mWebView;
@@ -36,7 +36,6 @@ public class HomeActivity extends AppCompatActivity implements AdvancedWebView.L
 
         mWebView = (AdvancedWebView) findViewById(R.id.webview);
         mWebView.setListener(this, this);
-        mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.setGeolocationEnabled(true);
         mWebView.setMixedContentAllowed(true);
         mWebView.setCookiesEnabled(true);
@@ -92,7 +91,9 @@ public class HomeActivity extends AppCompatActivity implements AdvancedWebView.L
 
     @Override
     public void onBackPressed() {
-        if (!mWebView.onBackPressed()) { return; }
+        if (!mWebView.onBackPressed()) {
+            return;
+        }
         // ...
 
         if (doubleBackToExitPressedOnce) {
@@ -153,26 +154,24 @@ public class HomeActivity extends AppCompatActivity implements AdvancedWebView.L
 
     @Override
     public void onPageError(int errorCode, String description, String failingUrl) {
-        Toast.makeText(HomeActivity.this, "onPageError(errorCode = "+errorCode+",  description = "+description+",  failingUrl = "+failingUrl+")", Toast.LENGTH_SHORT).show();
+        Toast.makeText(HomeActivity.this, "onPageError(errorCode = " + errorCode + ",  description = " + description + ",  failingUrl = " + failingUrl + ")", Toast.LENGTH_SHORT).show();
 
 
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     public void onDownloadRequested(String url, String suggestedFilename, String mimeType, long contentLength, String contentDisposition, String userAgent) {
-       // Toast.makeText(HomeActivity.this, "onDownloadRequested(url = "+url+",  suggestedFilename = "+suggestedFilename+",  mimeType = "+mimeType+",  contentLength = "+contentLength+",  contentDisposition = "+contentDisposition+",  userAgent = "+userAgent+")", Toast.LENGTH_LONG).show();
-        mWebView.loadUrl("https://drive.google.com/viewerng/viewer?embedded=true&url="+url);
-//        if (AdvancedWebView.handleDownload(this, url, suggestedFilename)) {
-//            // download successfully handled
-//        }
-//        else {
-//            // download couldn't be handled because user has disabled download manager app on the device
-//            // TODO show some notice to the user
-//        }
+        mWebView.getSettings().setJavaScriptEnabled(true);
+        mWebView.loadUrl("https://drive.google.com/viewerng/viewer?embedded=true&url=" + url);
+//        Intent intent = new Intent(HomeActivity.this, PdfiewerActivity.class);
+//        intent.putExtra("url", url);
+//        startActivity(intent);
+
     }
 
     @Override
     public void onExternalPageRequest(String url) {
-        Toast.makeText(HomeActivity.this, "onExternalPageRequest(url = "+url+")", Toast.LENGTH_SHORT).show();
+        Toast.makeText(HomeActivity.this, "onExternalPageRequest(url = " + url + ")", Toast.LENGTH_SHORT).show();
     }
 }

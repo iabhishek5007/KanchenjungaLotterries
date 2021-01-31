@@ -3,6 +3,14 @@ plugins {
 }
 
 android {
+    /*  signingConfigs {
+     myconfig {
+         keyAlias 'key0'
+         keyPassword 'kanchenjunga'
+         storeFile file(Key Stroke/keystore.jks)
+         storePassword 'kanchenjunga'
+     }
+ }*/
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
@@ -10,8 +18,8 @@ android {
         applicationId "com.rckdeveloper.kanchenjungalotterries"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        versionCode 11
+        versionName "1.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -39,4 +47,7 @@ dependencies {
 
     implementation 'com.github.delight-im:Android-AdvancedWebView:v3.0.0'
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+
+    implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
+
 }
